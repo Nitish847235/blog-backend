@@ -115,7 +115,7 @@ const getBlog = async (req,res) => {
       }
       query._id = req.params.id;
       let options = {};
-      let foundBlog = await dbService.findOne(Blog,query, options);
+      let foundBlog = await Blog.findOne(query).populate("author");
       if (!foundBlog){
         return res.recordNotFound();
       }
