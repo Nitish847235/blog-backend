@@ -19,6 +19,9 @@ const myCustomLabels = {
   const schema = new Schema({
     "title": String,
    "subTitle":String, 
+   category: String,
+   readTime: Number,
+   image: String,
     "author": {
         type: Schema.Types.ObjectId,
         "ref": "user"
