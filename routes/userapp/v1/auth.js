@@ -16,7 +16,7 @@ router.post('/register-otp', authController.sentRegisterOtp);
 router.post('/login-otp', authController.sentLoginOtp);
 router.route('/reset-password-otp').post(authController.sentResetPasswordOtp);
 router.route('/validate-otp').post(authController.validateOtp);
-router.route('/logout').put(auth(PLATFORM.USERAPP), authController.logout);
+router.route('/logout').get(auth(PLATFORM.USERAPP), authController.logout);
 router.post('/login/google', authController.googleLogin);
 
 

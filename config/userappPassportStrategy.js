@@ -17,7 +17,9 @@ const userappPassportStrategy = (passport) => {
   passport.use('userapp-rule',
     new Strategy(options, async (payload, done) => {
       try {
-        const result = await User.findOne({ _id: payload.id });
+        console.log(payload);
+        const result = await User.findOne({ _id: payload.id || payload.userId });
+        console.log(result);
         if (result) {
           return done(null, result.toJSON());
         }
