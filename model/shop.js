@@ -17,56 +17,20 @@ const myCustomLabels = {
   const Schema = mongoose.Schema;
 
   const schema = new Schema({
-    "title": String,
-   "subTitle":String, 
-    "author": {
-        type: Schema.Types.ObjectId,
-        "ref": "user"
-    },
-    "sections": [
-        {
-            "type": {type:String},
-             "text": String,
-             "caption":String,
-              "url": Array
-            
-        }
-    ],
-    "tags": String,
-    addedBy:{
+    shopOwner: {
         type:Schema.Types.ObjectId,
         ref:'user'
       },
-  
-      updatedBy:{
-        type:Schema.Types.ObjectId,
-        ref:'user'
-      },
-        isDeleted: { type: Boolean },
-        createdAt: { type: Date },
-        updatedAt: { type: Date },
-        like:[{
-          ref: 'user',
-            type: Schema.Types.ObjectId,
-            validate: {
-              validator: async function(value) {
-                 const id = await mongoose.model('user').findById(value);
-                 return !!id;
-              },
-              message: 'user does not exist.'
-           }}],
-    "comments": [
-        {
-            "author": {
-                type: Schema.Types.ObjectId,
-                "ref": "user"
-            },
-            "body": String,
-            "like":{type:Number,default:0},
-            "disLike":{type:Number,default:0},
-            "commentCreatedAt": Date
-        }
-    ]
+    shopName: String,
+    shopDescription: String,
+    shopLogo: String,
+    shopEmail: String,
+    shopPhone: String,
+    shopAddress: String,
+    isDeleted: { type: Boolean },
+    createdAt: { type: Date },
+    updatedAt: { type: Date },
+    
 },
       {
         timestamps: {

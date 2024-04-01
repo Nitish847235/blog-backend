@@ -10,17 +10,18 @@ const {
 
 /** validation keys and properties of addon */
 exports.schemaKeys = joi.object({
-  title: joi.string().allow(null).allow(''),
-  subTitle: joi.string().allow(null).allow(''),
-  author: joi.string().regex(/^[0-9a-fA-F]{24}$/).allow(null).allow(''),
+  shopName: joi.string().allow(null).allow(''),
+  shopEmail: joi.string().email({ tlds: { allow: false } }),
+  shopPhone: joi.number().integer().allow(0),
+  shopOwner: joi.string().regex(/^[0-9a-fA-F]{24}$/).allow(null).allow(''),
   isDeleted: joi.boolean(),
 }).unknown(true);
 
 /** validation keys and properties of addon for updation */
 exports.updateSchemaKeys = joi.object({
-    title: joi.string().allow(null).allow(''),
-    subTitle: joi.string().allow(null).allow(''),
-    author: joi.string().regex(/^[0-9a-fA-F]{24}$/).allow(null).allow(''),
+    shopName: joi.string().allow(null).allow(''),
+  shopEmail: joi.string().email({ tlds: { allow: false } }),
+  shopPhone: joi.number().integer().allow(0),
   isDeleted: joi.boolean(),
   _id: joi.string().regex(/^[0-9a-fA-F]{24}$/)
 }).unknown(true);
@@ -31,9 +32,10 @@ exports.findFilterKeys = joi.object({
   options: options,
   ...Object.fromEntries(
     keys.map(key => [key, joi.object({
-      title: joi.alternatives().try(joi.array().items(),joi.string(),joi.object()),
-      subTitle: joi.alternatives().try(joi.array().items(),joi.string(),joi.object()),
-      author: joi.alternatives().try(joi.array().items(),joi.string().regex(/^[0-9a-fA-F]{24}$/),joi.object()),
+        shopName: joi.alternatives().try(joi.array().items(),joi.string(),joi.object()),
+        shopEmail: joi.alternatives().try(joi.array().items(), joi.string(), joi.object()),
+        shopPhone: joi.alternatives().try(joi.array().items(), joi.number().integer(), joi.object()),
+      shopOwner: joi.alternatives().try(joi.array().items(),joi.string().regex(/^[0-9a-fA-F]{24}$/),joi.object()),
       isDeleted: joi.alternatives().try(joi.array().items(),joi.boolean(),joi.object()),
       id: joi.any(),
       _id: joi.alternatives().try(joi.array().items(),joi.string().regex(/^[0-9a-fA-F]{24}$/),joi.object())
