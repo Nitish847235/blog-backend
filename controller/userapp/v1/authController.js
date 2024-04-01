@@ -12,6 +12,8 @@ const validation = require('../../../utils/validateRequest');
 const authConstant = require('../../../constants/authConstant');
 const authService = require('../../../services/auth');
 const common = require('../../../utils/comon');
+const {verifyToken} = require('../../../firebase/auth')
+const jwt = require("jsonwebtoken");
 
 /**
  * @description : user registration 
@@ -326,7 +328,8 @@ const googleLogin  = async(req,res)=>{
       let objVal = {
           name: check.name,
           email: check.email,
-          picture: check.picture
+          picture: check.picture,
+          userType: authConstant.USER_TYPES.User
       }
       let user = await User.findOne({email:check.email})
       if(!user){
@@ -334,7 +337,7 @@ const googleLogin  = async(req,res)=>{
       }
       let userData = user.toJSON();
 
-      let token =  jwt.sign({userId:userData.id,email:userData.email},process.env.JWT_SCERET,{expiresIn:authConstant.JWT.EXPIRES_IN})
+      let token =  jwt.sign({userId:userData.id,email:userData.email},authConstant.JWT.USERAPP_SECRET,{expiresIn:authConstant.JWT.EXPIRES_IN})
 
       let expire = dayjs().add(authConstant.JWT.EXPIRES_IN, 'second').toISOString();
       await dbService.create(userTokens, { userId: userData.id, token: token, tokenExpiredTime: expire });
