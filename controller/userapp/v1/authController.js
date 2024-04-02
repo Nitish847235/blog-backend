@@ -40,7 +40,18 @@ const register = async (req,res) =>{
         return res.validationError({ message :  `Invalid values in parameters, ${validateRequest.message}` });
       } 
 
-    
+      if(req.body.email){
+        let found = await User.findOne({email:email});
+        if(found){
+            return res.validationError({message : `${email} already exists.Unique email are allowed.`})
+        }
+    }
+    if(req.body.phone){
+        let found = await User.findOne({phone:phone});
+        if(found){
+            return res.validationError({message : `${phone} already exists.Unique phone are allowed.`})
+        }
+    }
      
       const data = new User({
         ...req.body,
