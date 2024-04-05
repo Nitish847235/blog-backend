@@ -24,6 +24,7 @@ const myCustomLabels = {
     shopLogo: String,
     shopEmail: String,
     shopPhone: String,
+    url: String,
     coords:{
       latitude: Number,
       longitude: Number
