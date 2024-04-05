@@ -7,9 +7,9 @@ const auth = require("../../../middleware/auth");
 
 
 // router.post('/create',auth(PLATFORM.USERAPP),ShopController.addShop);
-router.get('/get/:id',auth(PLATFORM.USERAPP), ShopController.getShop);
-router.post('/list',auth(PLATFORM.USERAPP), ShopController.findAllShop);
-router.post('/count',auth(PLATFORM.USERAPP),ShopController.getShopCount);
+router.get('/get/:id', ShopController.getShop);
+router.post('/list', ShopController.findAllShop);
+router.post('/count',ShopController.getShopCount);
 // router.put('/update/:id',auth(PLATFORM.USERAPP), ShopController.updateShop);
 // router.put('/update-like/:id',auth(PLATFORM.USERAPP), ShopController.updateShopLike);
 // router.delete('/soft-delete/:id',auth(PLATFORM.USERAPP), ShopController.softDeleteShop);
