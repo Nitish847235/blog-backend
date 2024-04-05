@@ -27,6 +27,9 @@ const addShop = async (req, res) => {
       if (!validateRequest.isValid) {
         return res.validationError({ message : `Invalid values in parameters, ${validateRequest.message}` });
       }
+      if(!dataToCreate.shopName || !dataToCreate.shopOwner){
+        return res.badRequest({ message: 'Insufficient request parameters! shopName and shopOwner are required' });
+      }
       dataToCreate.addedBy = req.user.id;
       dataToCreate = new Shop(dataToCreate);
       let createdShop = await dbService.create(Shop,dataToCreate);

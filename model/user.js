@@ -54,6 +54,27 @@ const myCustomLabels = {
         enum: convertObjectToEnum(USER_TYPES),
         required: true
       },
+      country_code:{
+        type: Number,
+        default:91
+       } ,
+      address:[{
+        locality : {type:String},
+        city : {type:String},
+        state : {type:String},
+        country : {type:String},
+        zipcode : {type:Number}
+     }],
+     registeredLocation: {
+      type: {
+        type: String,
+        enum: ['Point'],
+        default: 'Point'
+      },
+      coordinates: {
+        type: [Number]
+      }
+    },
       picture: {
         type: String
       },

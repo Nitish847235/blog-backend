@@ -17,16 +17,31 @@ const myCustomLabels = {
   const Schema = mongoose.Schema;
 
   const schema = new Schema({
-    shopOwner: {
-        type:Schema.Types.ObjectId,
-        ref:'user'
-      },
+    IdentificationNumber: {type: String},
+    shopOwner: String,
     shopName: String,
     shopDescription: String,
     shopLogo: String,
     shopEmail: String,
     shopPhone: String,
-    shopAddress: String,
+    coords:{
+      latitude: Number,
+      longitude: Number
+    },
+    shopAddress:{
+      locality : {type:String},
+      city : {type:String},
+      state : {type:String},
+      country : {type:String},
+      zipcode : {type:Number}
+   },
+   Shop_overall_rating: {type:Number},
+   Shop_ranking: {type:Number},
+   Product_price: {type:Number},
+   Shop_overall_feedback: {type:String},
+   Shop_employee_feedback: {type:String},
+   Price_feedback: {type:String},
+
     isDeleted: { type: Boolean },
     createdAt: { type: Date },
     updatedAt: { type: Date },
@@ -67,5 +82,5 @@ const myCustomLabels = {
     return object;
   });
   schema.plugin(mongoosePaginate);
-  const blog = mongoose.model('blog',schema);
-  module.exports = blog;
+  const shop = mongoose.model('shop',schema);
+  module.exports = shop;

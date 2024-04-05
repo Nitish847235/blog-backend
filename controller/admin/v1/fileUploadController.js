@@ -71,6 +71,8 @@ const upload = async (req,res) => {
         }
 
         for (let file of files['files']) {
+          // console.log("files: " , files['files']);
+          if(file){
           let response = await uploadFiles(file,fields,fileCount++);
           console.log(response);
           if (response.status == false) {
@@ -86,6 +88,12 @@ const upload = async (req,res) => {
               'status': true
             });
           }
+        }else{
+          reject({
+            'message': 'Select at least one file to upload.',
+            'name': 'validationError'
+          });
+        }
         }
 
         resolve({

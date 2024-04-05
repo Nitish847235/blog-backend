@@ -26,15 +26,7 @@ const myCustomLabels = {
         type: Schema.Types.ObjectId,
         "ref": "user"
     },
-    "sections": [
-        {
-            "type": {type:String},
-             "text": String,
-             "caption":String,
-              "url": Array
-            
-        }
-    ],
+    description: String,
     "tags": String,
     addedBy:{
         type:Schema.Types.ObjectId,

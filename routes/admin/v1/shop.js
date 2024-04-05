@@ -6,14 +6,16 @@ const auth = require("../../../middleware/auth");
 
 
 
-router.post('/create',auth(PLATFORM.USERAPP),ShopController.addShop);
-router.get('/get/:id',auth(PLATFORM.USERAPP), ShopController.getShop);
-router.post('/list',auth(PLATFORM.USERAPP), ShopController.findAllShop);
-router.post('/count',auth(PLATFORM.USERAPP),ShopController.getShopCount);
-router.put('/update/:id',auth(PLATFORM.USERAPP), ShopController.updateShop);
-router.put('/update-like/:id',auth(PLATFORM.USERAPP), ShopController.updateShopLike);
-router.delete('/soft-delete/:id',auth(PLATFORM.USERAPP), ShopController.softDeleteShop);
-router.delete('/delete/:id',auth(PLATFORM.USERAPP),ShopController.deleteShop);
+router.post('/create',auth(PLATFORM.ADMIN),ShopController.addShop);
+router.post('/addBulk',auth(PLATFORM.ADMIN),ShopController.bulkInsertShop);
+router.get('/get/:id',auth(PLATFORM.ADMIN), ShopController.getShop);
+router.post('/list',auth(PLATFORM.ADMIN), ShopController.findAllShop);
+router.post('/count',auth(PLATFORM.ADMIN),ShopController.getShopCount);
+router.put('/update/:id',auth(PLATFORM.ADMIN), ShopController.updateShop);
+router.delete('/soft-delete/:id',auth(PLATFORM.ADMIN), ShopController.softDeleteShop);
+router.delete('/delete/:id',auth(PLATFORM.ADMIN),ShopController.deleteShop);
+router.post('/deleteMany',auth(PLATFORM.ADMIN),ShopController.deleteManyShop);
+router.put('/softDeleteMany',auth(PLATFORM.ADMIN),ShopController.softDeleteManyShop);
 
 
 module.exports = router;

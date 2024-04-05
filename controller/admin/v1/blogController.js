@@ -21,9 +21,9 @@ const common = require('../../../utils/comon');
 const addBlog = async (req, res) => {
     try {
       let dataToCreate = { ...req.body || {} };
-      let {title,subTitle,sections,author} = req.body;
-      if(!title || !subTitle || !sections || !author)
-      return res.badRequest({ message: 'Insufficient request parameters! title and subTitle and sections and author  is required.' });
+      let {title,subTitle,description,author} = req.body;
+      if(!title || !subTitle || !description || !author)
+      return res.badRequest({ message: 'Insufficient request parameters! title and subTitle and description and author  is required.' });
       let validateRequest = validation.validateParamsWithJoi(
         dataToCreate,
         blogSchemaKey.schemaKeys);
